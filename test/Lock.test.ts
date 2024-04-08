@@ -9,11 +9,17 @@ describe("Lock", function () {
     const contract = await LockContract.deploy();
     return { contract, owner, otherAccount };
   }
+
   it("should get Hello world", async () => {
-    const { contract, owner, otherAccount } = await loadFixture(
-      deployLockFixture
-    );
+    const { contract } = await loadFixture(deployLockFixture);
     const sut = await contract.hello();
     expect(sut).to.equal("Hello world");
+  });
+
+  it("should set message to newMessage", async () => {
+    const { contract } = await loadFixture(deployLockFixture);
+    await contract.setMessage("New message");
+    const sut = await contract.hello();
+    expect(sut).to.equal("New message");
   });
 });
