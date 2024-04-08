@@ -5,7 +5,7 @@ import { ethers } from "hardhat";
 describe("Lock", function () {
   async function deployLockFixture() {
     const [owner, otherAccount] = await ethers.getSigners();
-    const LockContract = await ethers.getContractFactory("Lock");
+    const LockContract = await ethers.getContractFactory("Index");
     const contract = await LockContract.deploy();
     return { contract, owner, otherAccount };
   }
